@@ -1,0 +1,14 @@
+Spring
+	DI
+	IOC 
+	Wire diff layers together
+	Spring JDBC
+	Spring MVC
+	Spring ORM Support
+	Spring Integration(similar JMS)
+	Spring Web Services(for SOAP)
+	Spring Test
+	
+	
+Unit Test vs Integration test
+If we do not use mock then real objects will be called not mocked one.And that will do integration testing.

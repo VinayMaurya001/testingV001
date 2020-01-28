@@ -1,0 +1,69 @@
+
+JUnit5 setup
+	Dependencies
+ 		junit-jupiter-engine
+ 		junit-vintage-engine
+		
+	
+Migrating from JUnit4 to Junit5
+	Java8 feature support
+	More Modularized
+		JUnit Platform-for junit5
+		JUnit Vintage-for junit4
+	Better annotation name
+		@Before->@BeforeEach (@BeforeAll)
+		@After->@AfterEach	(@AfterAll)
+	class Assert-->Assertions
+	package   org.junit.* -->org.junit.jupiter.api.*
+	@Test(expected = IllegalArgumentException.class) not supported in JUnit5
+		In JUnit5
+			Assertions.assertThrows(IllegalArgumentsException.class,()->{
+				greeting.greet(null);
+			});
+	Run JUnit5 test
+		1)Using Eclipse
+			i)If JUnit5 available in eclipse
+				run as->configuration-->JUnit->select JUnit5 
+			ii)If JUnit5 not available in eclipse
+				Add dependencies
+					junit-platform-runner
+					junit-jupiter-api
+					@RunWith(JUnitPlatform.class)
+					run as--> JUnit Test case
+		2)Using Maven	
+			maven-surefire-plugin
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.1</version>
+			</plugin>
+		
+Maven
+	Build Automation Tool
+	Project Management tool
+	Build means
+		Compile 
+		Run tests
+		Package Jar/war
+		Deploy to server
+	Convention over configuration	
+		src/main/java
+		src/main/resources
+		src/test/java
+		src/test/resources
+		pom.xml
+	mvn install
+	archetypes(template)
+		IDEs support inbuild archetypes
+		maven-archetype-quickstart
+		maven-archetype-webapp
+	Maven is very light weight.It uses a plugin bqased architecture.
+	<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<fork>true</fork>
+					<executable>C:\Program Files\Java\jdk1.8.0_121\bin\javac.exe</executable>
+				</configuration>
+	</plugin>
+	Pull dependencies from maven repository
+	Eclipse m2e plugin

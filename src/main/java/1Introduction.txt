@@ -1,0 +1,34 @@
+Introduction
+
+What is Unit testing in Java?
+	Unit testing is to test our code at Unit or class level, ie.  we test public methods of class.
+	We pass diff arguments to method & check whether is behave +ve or -ve or any exception occuring.
+	
+Q)While unit testing we test the application end to end.(false)
+	
+Why Unit testing?
+	Assure Quality
+		During development & AFTER development
+	RUN fast because units are mock from other layers like service or DAO layer
+	Regression Suite
+		During maintenance, it helps alot. We can run all JUnit test cases. 
+		
+Unit Testing
+	JUnit
+		To write Unit test
+	MOCKITO
+		Mocking out all the dependency we need
+	
+Setup
+Java
+	path environment variable
+Eclipse
+	JAVA_HOME environment variable
+	
+	
+Unit testing frameworks(like JUnit4) provides:
+	An easy to use API
+	Away to assert the results
+	Run & report the results
+	
+	

@@ -1,0 +1,32 @@
+CodeCoverage:
+It is important metric for developers, for architect and even for management.
+Install EclEmma code coverage plugin for eclipse
+Measuring code coverage using Emma
+Improve our test coverage
+
+
+Test coverage or code coverage is the number of lines of our source code that is tested 
+	when our unit test runs against the source code.
+	This included following:
+		Conditional Statements
+		Loop Statements
+		No of parameters passed in the method
+		Type of parameters passed in the methods
+		etc.
+		
+		
+We measure code coverage using tools. 
+These tools run our tests against to the source code & gives us the percentage of code coverage.
+And also show us which lines of source code are tested & which lines are not tested & which needs more testing.
+
+Populars tools
+	EclEmma- Jacoco
+	Cobertura
+	JTest
+
+CI->Jenkins->Maven/Ant
+Eclipse plugin
+	Right click on Project-->Coverage As-->JUnit test->Coverage tab
+
+80-90% is good code coverage.
+

@@ -1,0 +1,23 @@
+Junit Testing
+
+Introduction
+Setup
+
+
+
+
+
+
+
+Resources
+	JavaBrains
+	Udemy: https://www.udemy.com/course/junitandmockitocrashcourse/
+	Udemy:
+
+
+ctrl+D: delete line
+alt+up arrow: to move up selected lines
+alt+1: convert local variable to field
+
+
+

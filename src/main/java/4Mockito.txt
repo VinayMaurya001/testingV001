@@ -1,0 +1,73 @@
+Mocking
+	Testing in isolation
+	
+Suppose class A depends on B or uses class B. And we are unit testing classs A. 
+	Then we mock out B on the all method on class B that class A uses.
+	Then mock object will take place of real object of class B.
+	The idea is to test our code without using its dependencies.
+	
+ReservationController
+ReservationService or ReservationBO
+ReservationDAO
+
+Steps in Mocking
+	Stubbing
+	Setting Expectations
+	Verifying
+
+Mockito
+	It is a framework that provides the API for mocking the object.
+@Mock
+when
+thenReturn
+thenThrow
+verify.matchers etc.	
+
+Q)The assumption of mocking is that each Unit is tested in ?(Isolation)
+
+
+The OrderProcessing usecase:
+Client->>OrderProcessor
+	placeOrder
+	cancelOrder
+	deleteOrder
+Layers
+	OrderBO
+		placeOrder()
+		cancelOrder()
+		deleteOrder()
+	OrderDAO
+		create()
+		read()
+		update()
+		delete()
+
+Add the Mockito dependency
+
+Stubbing &	Setting Expectations
+@Mock
+OrderDAOImpl dao;
+MockitoAnnotations.initMocks(this);
+Mockito.when(dao.create(order)).thenReturn(new Integer(1));
+boolean result = bo.placeOrder(order);
+Assertions.assertTrue(result);
+Mockito.verify(dao).create(order);
+
+Q)Which annotation can be used to mock an object.(@Mock)
+Q)Which method in the Mockito API should be called to initialize the mocks?(MockitoAnnotations.initMocks(this);)
+Q)Which static method can be used to stub out the method calls on a mocked object?(when())
+Q)While using the when method to stub which method should be used return a value?(thenReturn())
+
+
+Verify the result
+Q)Which methods in the JUnit API can be used to verify the results?(assert())
+
+
+Verify
+	Mockito.verify(dao).create(order);//By default, it will verify that create(order) will be called once.
+	Mockito.verify(dao,Mockito.times(2)).create(order);//RTE,ToLittleInvocations error
+	Mockito.verify(dao, Mockito.atLeast(1)).create(order);
+	
+	Mockito.when(dao.create(order)).thenReturn(new Integer(1));
+	Mockito.when(dao.create(Matchers.any(Order.class))).thenReturn(new Integer(1));
+

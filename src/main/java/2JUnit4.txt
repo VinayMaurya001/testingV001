@@ -1,0 +1,22 @@
+Juni4
+JUnit 3 uses naming convention
+Since JUnit4, we uses annotations not naming conventions.	
+@Test: mark the test metod
+@Before:mark for setup method 
+@After:mark for cleanup method
+@BeforeClass
+@Ignore: test will be ignored, not recommended to use
+@Test(expected = IllegalArgumentException.class)
+Assert.assertNotNull()
+Assert.assertEquals()
+Assert.assertSame()
+Running the Tests
+	BlockJunit4ClassRunner.class
+	Scan all @Test,@Before etc ...
+	@RunWith(SpringJunit4ClassRunner.class): SpringJunit4ClassRunner.class extends BlockJunit4ClassRunner.class
+Q)Which annotation can be used to setup data for each test method?(@Before)
+Q)Which of the following is the default JUnit test runner?(BlockJunit4ClassRunner.class)
+
+
+
+	
