@@ -1,4 +1,4 @@
-package _7paameterizedTest;
+package _2junit4;
 
 public class CalculatorImpl implements Calculator {
 

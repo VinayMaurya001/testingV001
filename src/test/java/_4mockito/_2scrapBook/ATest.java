@@ -4,11 +4,14 @@ import org.mockito.Mockito;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import _4mockito._1orderService.bo.exception.BOException;
 
+@RunWith(JUnitPlatform.class)
 public class ATest {
 
 	@Mock

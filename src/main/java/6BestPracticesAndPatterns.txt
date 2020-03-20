@@ -2,7 +2,8 @@ FIRST principle
 	It is very popular in Agile Software testing world.
 	F-Fast test
 	I-Independent test
-		One test should not be depend on other test
+		One test should not be depend on other test,
+		becuase in case of failure of one test method, there should not be failure of all test method
 	R-Repeatable test
 		Prod, qa, dev
 	S-Self-validating test
@@ -14,22 +15,29 @@ Test Doubles
 	Test Doubles are common design patterns that are used across unit testing framework.
 
 Gerard Meszaros
-
 Analogy: Stunt doubles in movies
 
 5 famous Test Doubles patterns:
 	Dummy
-		any
-		Mockito.when(dao.create(Matchers.any(Order.class))).thenReturn(new Integer(1));
+	
 	Stubs
-		when, thenReturn
-		Mockito.when(dao.create(Matchers.any(Order.class))).thenReturn(new Integer(1));		
+		class DataServiceStub implements DataService {
+		@Override
+		public int[] retrieveAllData() {
+			return new int[] { 24, 6, 15 };
+		}
+		}
+		Disdavantages:
+			We have to write Stub classes for each test.
 	Mocks
 		throw exception & can verify other method has been called
+				Mockito.when(myList.get(0)).thenReturn("Rambo");// No exception even if list is empty
+		
 	Fake
 		Some shortcuts like in-memory database etc. ie. rarely used
 	Spies
 		They are stubs that can spy or record any side effect when we are testing a particular testing method.
+				Mockito.doReturn(3).when(myList).size();
 		
 		
 Partial mocking using Mockito Spy

@@ -17,6 +17,7 @@ Mocking Frameworks
 	etc.
 		
 PowerMock
+	PowerMock is also a mocking framwork.
 	PowerMock reuses, what is already there in Mocking framework like Mockito, EastMock etc. & extends them.
 	So we have flavour of PowerMocks:
 		1)PowerMock with Mockito
@@ -34,7 +35,7 @@ PowerMock uses similar syntax like 	Mockito/EasyMock:
 		
 
 Dependency
-<dependency>
+		<dependency>
 			<groupId>org.powermock</groupId>
 			<artifactId>powermock-api-mockito2</artifactId>
 			<version>2.0.4</version>

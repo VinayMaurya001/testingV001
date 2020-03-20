@@ -9,7 +9,7 @@ public class TicketDAOImpl implements TicketDAO {
 
 	@Override
 	public int createTicket(Ticket ticket) {
-
+		//db communication
 		return 1;
 	}
 

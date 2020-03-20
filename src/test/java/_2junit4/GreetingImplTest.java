@@ -1,12 +1,10 @@
 package _2junit4;
 
-import static org.junit.Assert.*;
-
-
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 
 public class GreetingImplTest {
 
@@ -24,8 +22,8 @@ public class GreetingImplTest {
 	public void greetShouldRetunAValidOutput() {
 		System.out.println("greetShouldRetunAValidOutput");
 		String result = greeting.greet("Junit");
-		assertNotNull(result);
-		assertEquals("Hello Junit", result);
+		Assert.assertNotNull(result);
+		Assert.assertEquals("Hello Junit", result);
 	}
 
 	@Test(expected = IllegalArgumentException.class)

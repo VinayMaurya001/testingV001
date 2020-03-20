@@ -51,12 +51,13 @@ Maven
 		src/test/java
 		src/test/resources
 		pom.xml
+	mvn clean
 	mvn install
 	archetypes(template)
 		IDEs support inbuild archetypes
 		maven-archetype-quickstart
 		maven-archetype-webapp
-	Maven is very light weight.It uses a plugin bqased architecture.
+	Maven is very light weight. It uses a plugin bqased architecture.
 	<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
@@ -67,3 +68,237 @@ Maven
 	</plugin>
 	Pull dependencies from maven repository
 	Eclipse m2e plugin
+	
+	
+
+JUnit5 Architecture
+1. Jupiter-Engine or Platform(Core part): We do not interact with it directly(We interact with it using Jupiter, Vintage or EXT Api)
+2. Jupiter(JUnit 5 API)
+3. Vintage(JUnit 4 API)
+4. EXT(3rd party API)
+Most IDE support integration with JUnit. IDE & tools use platform to run the test.
+
+JUnit Jupiter
+	New programming model in JUnit
+	Extension model
+	What you'll be primarily working with
+
+
+
+Creating a new JUnit project using MAVEN
+	Create simple Maven Project
+	Add in POM.xml
+		<properties>
+			<maven.compiler.target>8</maven.compiler.target>
+			<maven.compiler.source>8</maven.compiler.source>
+		</properties>
+		
+		Dependencies
+		jUnit-jupiter-api: API for Writing tests using JUnit Jupiter
+		jUnit-jupiter-engine: Implementation of the TestEngine API for JUnit Jupiter
+		jUnit-vintage-engine: A thin layer on top of JUnit 4 to allow running vintage tests
+			
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>5.4.0</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>5.4.0</version>
+				<scope>test</scope>
+			</dependency>
+	Maven update project
+	inside unitTesting on cmd:mvn install
+	
+Maven Surefire plugin integretion:
+It is used to run JUnit test using maven command
+Now without using eclipse, we may run JUnit test runner.
+It will run all test of project.
+<plugin>
+		<artifactId>maven-surefire-plugin</artifactId>
+		<version>2.22.1</version>
+</plugin>
+Example: Create simple test case & run it.
+	
+Convention
+Test class name ended with Test
+
+Create Test Case 
+	New>Junit Test Case with Eclipse
+	@Test
+
+Running a Test
+Run as>JUnit Test>Test>TestRunner>JUnit5
+	Eclipse can talk directly to platform of JUnit & run the test
+	
+@Test: 
+	Marks method as a test
+	Inform the JUnit engine what methods need to run 
+	
+JUnit hack
+Can be used as a runner!
+	The Green Bar: "No News" is good news. "No Failures" means success.
+		Assertions.fail("Not Yet Implemented");
+		Assertions.assertEquals(4, 5);
+		Assertions.assertArrayEquals(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 });
+		Assertions.assertIterableEquals(expected, actual);
+		Assertions.assertNotEquals(..)
+		Assertions.notNull(..)
+
+Asserting exeptions with assertThrows:
+	To validate that method is throwing right eXception
+	1)If exception is not thrown
+	2)If wrong exception(exception of diff type) is thrown
+	Assertions.assertThrows(ArithmeticException.class, () -> divideTwoNumbers(1, 0),"Should throw divide by zero arithmetic exception");
+
+
+Test Life cycle and test anti-patterns to avoid
+Test Life cycle 
+	It is the process in which test instance is created, managed and destroy.
+
+JUnit creates the instance of test class(like CircleTest class) for each 'test method' and manage its life-cycle.
+JUnit also runs 'test methods'(like divide() method) in random order. 
+We can specify order using @Order annotation. Although ordering is not recommended to use.
+
+
+ 
+Life-cycle hook 
+	@BeforeAll: Method, corresponding to this,  will execute before all test method. 
+	@AfterAll
+	@BeforeEach:Method, corresponding to this,  will execute even before create instance of its Test class. 
+		So method must be static.
+	@AfterEach: Method, corresponding to this,  will execute even after destroying instance of its Test class. 
+		So method must be static.
+	
+	
+
+Changing default TestInstance behavior
+@TestInstance(TestInstance.LifeCycle.PER_METHOD): Default behavior
+@TestInstance(TestInstance.LifeCycle.PER_CLASS): 
+	It doesn't provide guaranty about instance creation and using it is not a good programming practice
+
+ 
+ 
+DisplayName and Disabled annotations
+Annotations to scale your test
+@DisplayName("Display name of test method")
+@Disabled:
+	Disable the test method to run. 
+
+
+
+Conditional executions and assumptions
+Conditional executions
+@EnabledOnOs(OS.LINUX)
+@EnabledOnJre(JRE.JAVA_11)
+@EnabledIf
+@EnabledIfSystemProperty
+@EnabledIfEnvironmentVariable
+
+Handling external factors
+assumptions.assumeTrue(boolean isServerUp): it will skip the test method.
+
+
+
+AssertAll
+	It allows to group multiple assertEqual statement in a single unit.
+	assertAll(
+		()-> assertEquals(4, mathUtils.multiply(2, 2)),
+		()-> assertEquals(0, mathUtils.multiply(2, 0)),
+		()-> assertEquals(4, mathUtils.multiply(2, -1))
+	);
+
+
+
+Writing nested test classes
+More test organization
+	Nest, related test with @Nested
+
+class CircleTest{
+
+@Nested
+@DisplayName("add method")
+class AddTest{
+	@Test
+	@DisplayName("When adding positive numbers")
+	void testAddPositive(){
+		assertEquals(2, mathUtils.add(1,1), "should return the right sum");
+	}
+	@Test
+	@DisplayName("When adding negative numbers")
+	void testAddPositive(){
+		assertEquals(-1, mathUtils.add(-1,-1), "should return the right sum");
+}}
+
+
+}
+
+
+
+
+
+
+Using supplier for assert messages
+Lazy assert messages
+	assertEquals(expected, actual, ()->"should return sum "+expected+" but returned "+actual);
+	Now, Lembda will execute only if assertion error occurs.
+	
+	
+@RepeatedTest 
+	@RepeatedTest(3) 
+	void testMethod(RepetationInfo repetationInfo) {
+		repetationInfo.getCurrentRepetation();
+	}
+
+	
+
+
+Tagging tests with @Tag
+	class AddTest{
+		@Test
+		@Tag("Positive")
+		@DisplayName("When adding positive numbers")
+		void testAddPositive(){
+			assertEquals(2, mathUtils.add(1,1), "should return the right sum");
+		}
+		@Test
+		@Tag("Math")
+		@DisplayName("When adding negative numbers")
+		void testAddPositive(){
+			assertEquals(-1, mathUtils.add(-1,-1), "should return the right sum");
+		}
+		@Test
+		@Tag("Math")
+		@DisplayName("When adding any numbers")
+		void testAddAnyNumber(){
+			assertEquals(0, mathUtils.add(-1,1), "should return the right sum");
+		}
+	}
+	We can run Tagging tests using:
+		1. Eclipse
+		2. Configure in pom.xml
+
+
+
+Using TestInfo and TestReporter
+	TestInfo and TestReporter are actually Java interfaces, not classes. 
+	But you should not worry about the underlying implementation. 
+	Make sure to use these interfaces directly(JUnit will inject implemented classes using dependency injection).
+	
+	TestReporter will give output on JUnit console output.
+	class CircleTest{
+		TestInfo testInfo;
+		TestReporter testReporter;
+		
+		void testMethod(TestInfo testInfo,TestReporter testReporter){
+			System.out.println("Running "+testInfo.getDisplayName()+" with tag "+testInfo.getTag());
+		}
+	}
+	
+	We  can write our own custom providers like TestInfo and TestReporter.
+	
+	
+	

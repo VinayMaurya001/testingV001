@@ -1,21 +1,43 @@
 Juni4
 JUnit 3 uses naming convention
-Since JUnit4, we uses annotations not naming conventions.	
-@Test: mark the test metod
-@Before:mark for setup method 
-@After:mark for cleanup method
-@BeforeClass
+	Since JUnit4, we uses annotations not naming conventions.	
+@Test: mark the test method
+@Before:mark for setup method, it runs before each test method 
+@After:mark for cleanup method,it runs after each test method 
+@BeforeClass: it runs only once for entire class before any test method , it must be static
 @Ignore: test will be ignored, not recommended to use
+
 @Test(expected = IllegalArgumentException.class)
+
 Assert.assertNotNull()
 Assert.assertEquals()
 Assert.assertSame()
+
 Running the Tests
 	BlockJunit4ClassRunner.class
 	Scan all @Test,@Before etc ...
 	@RunWith(SpringJunit4ClassRunner.class): SpringJunit4ClassRunner.class extends BlockJunit4ClassRunner.class
 Q)Which annotation can be used to setup data for each test method?(@Before)
 Q)Which of the following is the default JUnit test runner?(BlockJunit4ClassRunner.class)
+Example:
+	GreetingImplTest.java
+
+Parameterized Test
+It is introduced in JUnit4.
+It allows to pass different types of data set & assert for diff result inside a single test method.
+	int result=add(num1,num2);
+	result->2	2	11
+	  num1->1	-2	3
+	  num2->1	4	8
+Example:
+	  CalculatorImplTest.java
+Steps to write Parameterized Test:
+	Identify the input data & results
+	Create fields(for input data & results) in test class
+	Create a Constructor that can take input,output & result
+	Create a static method that will feed the data with all combination (@Parameters)
+	Create /Update the test method
+	Mark the Test with RunWith(Parameterized.class), a special JUnit runner	  
 
 
 

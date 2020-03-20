@@ -8,6 +8,7 @@ public class OrderDAOImpl implements OrderDAO {
 
 	@Override
 	public int create(Order order) throws SQLException {
+		//db connection
 		return 0;
 	}
 

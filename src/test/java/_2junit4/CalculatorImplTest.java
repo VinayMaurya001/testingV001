@@ -1,10 +1,13 @@
-package _7paameterizedTest;
+package _2junit4;
 
 import java.util.Arrays;
+
+
+
 import java.util.Collection;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
@@ -33,7 +36,7 @@ public class CalculatorImplTest {
 	public void addShouldReturnAResult() {
 		Calculator c = new CalculatorImpl();
 		int result = c.add(num1, num2);
-		Assertions.assertEquals(expectedResult, result);
+		Assert.assertEquals(expectedResult, result);
 	}
 
 }

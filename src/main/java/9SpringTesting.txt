@@ -12,3 +12,17 @@ Spring
 	
 Unit Test vs Integration test
 If we do not use mock then real objects will be called not mocked one.And that will do integration testing.
+
+Example:
+	TicketServiceImplTest.java
+	
+	
+//Load the context
+//@RunWith(SpringRunner.class)
+@RunWith(MockitoJunitRunner.class)
+@ContextConfiguration(classes = SpringIn5StepsBasicApplication.class)
+
+public class BinarySearchTest {
+	
+	
+	

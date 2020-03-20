@@ -1,10 +1,10 @@
 Mocking
 	Testing in isolation
 	
-Suppose class A depends on B or uses class B. And we are unit testing classs A. 
+Suppose class A depends on B or uses class B. And we are unit testing for classs A. 
 	Then we mock out B on the all method on class B that class A uses.
 	Then mock object will take place of real object of class B.
-	The idea is to test our code without using its dependencies.
+	The idea is to test our code in isolation without using its dependencies.
 	
 ReservationController
 ReservationService or ReservationBO
@@ -17,6 +17,7 @@ Steps in Mocking
 
 Mockito
 	It is a framework that provides the API for mocking the object.
+	
 @Mock
 when
 thenReturn
@@ -25,12 +26,11 @@ verify.matchers etc.
 
 Q)The assumption of mocking is that each Unit is tested in ?(Isolation)
 
-
 The OrderProcessing usecase:
 Client->>OrderProcessor
 	placeOrder
 	cancelOrder
-	deleteOrder
+	deleteOrder	
 Layers
 	OrderBO
 		placeOrder()
@@ -63,6 +63,9 @@ Verify the result
 Q)Which methods in the JUnit API can be used to verify the results?(assert())
 
 
+We can mock, class & interfaces both.
+
+
 Verify
 	Mockito.verify(dao).create(order);//By default, it will verify that create(order) will be called once.
 	Mockito.verify(dao,Mockito.times(2)).create(order);//RTE,ToLittleInvocations error
@@ -71,3 +74,9 @@ Verify
 	Mockito.when(dao.create(order)).thenReturn(new Integer(1));
 	Mockito.when(dao.create(Matchers.any(Order.class))).thenReturn(new Integer(1));
 
+Mockito.doNothing().doThrow(Exception.class).when(b).voidmethod();
+
+
+
+
+Mocking 

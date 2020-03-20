@@ -1,34 +1,119 @@
 Introduction
 
+Why we do testing?
+The point of writing automated tests not so much to verify that the code works now.
+But the point is to verify on an ongoing basis that the code continues to work in the future.
+
+Step to write software
+	Way 1:
+		Design
+		Write Code
+		Test Manually
+		
+	Way 2:
+		Design
+		Write Code
+		Write Test
+		Run the test
+
+Test Driven Development Methodology with JUnit
+	Write test first, then code
+	
+	
+		
+Step to write Unit Test 
+1. Preparation
+2. Provide test inputs
+3. Run the tests(jUnit)
+4. Provides expected output
+5. Verify result(jUnit)
+6. Do something to alert developer if test failed(jUnit).
+
+
 What is Unit testing in Java?
-	Unit testing is to test our code at Unit or class level, ie.  we test public methods of class.
+	Unit testing is to test our code at Unit (method or class level), ie.  we test public methods of class.
 	We pass diff arguments to method & check whether is behave +ve or -ve or any exception occuring.
 	
+
+
 Q)While unit testing we test the application end to end.(false)
+	
+Unit Testing
+	We test COntroller class method without service & DAO class methods
+	
+Integration Testing
+	We test COntroller class method with service & DAO class methods
+	
+Screen Testing
+	Testing of entire deployable project
 	
 Why Unit testing?
 	Assure Quality
 		During development & AFTER development
 	RUN fast because units are mock from other layers like service or DAO layer
 	Regression Suite
-		During maintenance, it helps alot. We can run all JUnit test cases. 
-		
+		During maintenance, it helps alot. 
+		We can run all JUnit test cases. 
+	Unit testing comes under Automation Testing.
+ 		Automation Testing can be run over all the times whenever there is a change 
+ 			in code or at frequent intervals. And we can find bug fast.
+ 	When you're trying a new concept you can write a JUnit test for it and 
+ 		try to make sure that you are understanding that concept really well.
+ 
 Unit Testing
 	JUnit
 		To write Unit test
 	MOCKITO
 		Mocking out all the dependency we need
 	
+
 Setup
 Java
 	path environment variable
 Eclipse
 	JAVA_HOME environment variable
+
+
+
+Example without using testing framework
+	Using if-else
+	Using assert
+		Assert keyword with -ea(To enable assert keyword)
+Example: CalculatorTest.java
+
+
+Why do we need a testing framework?
+	Because JUnit helps in the following step:
+		Run the tests(jUnit)
+		Verify result(jUnit)
+		Do something to alert developer if test failed(jUnit).
+
 	
 	
 Unit testing frameworks(like JUnit4) provides:
 	An easy to use API
-	Away to assert the results
+	A way to assert the results
 	Run & report the results
 	
+
+Why JUnit5 but not JUnit4
+JUnit4
+1. JUnit4 is > 10 years old.
+2. Not up to date with newer testing patterns.
+3. Not up to date with java language features. Like java8s
+4. Monolithic architecture(single jar )
+5. Bugs and feature requests piled up
+
+JUnit5
+The D-facto standard for testing in Java
+It is testing framework.
+
+Crowd-funding campaign
+1. Initiated by the core team
+2. Called "JUnit Lambda".
+3. Many companies and individuals contributed
+4. Started the path to JUnit 5.
+5. JUnit5 != JUnit4+1.
+
+
 	

@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -16,7 +19,7 @@ import _4mockito._1orderService.bo.OrderBOImpl;
 import _4mockito._1orderService.bo.exception.BOException;
 import _4mockito._1orderService.dao.OrderDAOImpl;
 import _4mockito._1orderService.dto.Order;
-
+@RunWith(JUnitPlatform.class)
 public class OrderBOImplTest {
 
 	private static final int ORDER_ID = 123;
@@ -24,28 +27,36 @@ public class OrderBOImplTest {
 	@Mock
 	OrderDAOImpl dao;
 
+	@InjectMocks
 	private OrderBOImpl bo;
 
 	@BeforeEach
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
-		bo = new OrderBOImpl();
-		bo.setDao(dao);
+
+		
+		//When @InjectMocks not used
+		//bo = new OrderBOImpl();
+		//bo.setDao(dao);
 	}
 
 	@Test
 	public void placeOrder_Should_Create_An_Order() throws SQLException, BOException {
-
 		Order order = new Order();
+		
+		//When @Mock not used
+		//OrderDAOImpl dao=Mockito.mock(OrderDAOImpl.class);
+		//bo.setDao(dao);
+		
 		Mockito.when(dao.create(order)).thenReturn(new Integer(1));
 		// Mockito.when(dao.create(Matchers.any(Order.class))).thenReturn(new
 		// Integer(1));
 		boolean result = bo.placeOrder(order);
 		Assertions.assertTrue(result);
 
-		//Mockito.verify(dao).create(order);//By default, it will verify that create(order) will be called once.
+		Mockito.verify(dao).create(order);//By default, it will verify that create(order) will be called once.
 		//Mockito.verify(dao,Mockito.times(2)).create(order);//RTE,ToLittleInvocations error
-		 Mockito.verify(dao, Mockito.atLeast(1)).create(order);
+		// Mockito.verify(dao, Mockito.atLeast(1)).create(order);
 
 	}
 
@@ -56,20 +67,18 @@ public class OrderBOImplTest {
 		boolean result = bo.placeOrder(order);
 
 		Assertions.assertFalse(result);
+		
 		Mockito.verify(dao).create(order);
 
 	}
 
 	@Test
 	public void placeOrder_Should_Throw_BOException() throws SQLException, BOException {
-		Order order = new Order();
 		Mockito.when(dao.create(Matchers.any(Order.class))).thenThrow(SQLException.class);
-		 
+		Order order = new Order();
 		Assertions.assertThrows(BOException.class,()->{
 			boolean result =bo.placeOrder(order);
 		});
-		
-
 	}
 
 	@Test
@@ -80,7 +89,7 @@ public class OrderBOImplTest {
 
 		boolean result = bo.cancelOrder(123);
 		Assertions.assertTrue(result);
-
+		
 		Mockito.verify(dao).read(Matchers.anyInt());
 		Mockito.verify(dao).update(order);
 	}
