@@ -1,6 +1,6 @@
 CodeCoverage:
 It is important metric for developers, for architect and even for management.
-Install EclEmma code coverage plugin for eclipse
+Install EclEmma code coverage plugin for eclipse from elcipse marketplace
 Measuring code coverage using Emma
 Improve our test coverage
 

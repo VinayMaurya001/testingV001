@@ -32,7 +32,24 @@ PowerMock uses similar syntax like 	Mockito/EasyMock:
 		when()  thenReturn() etc.
 	Verifying
 		verify
-		
+
+
+Example:
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(IDGenerator.class)
+public class UserDAOTest {
+	@Test
+	public void createShouldReturnAUserId() {
+		UserDAO dao = new UserDAO();
+		PowerMockito.mockStatic(IDGenerator.class);
+		PowerMockito.when(IDGenerator.generateID()).thenReturn(1);
+
+		int result = dao.create(new User());
+		Assertions.assertEquals(1, result);
+		PowerMockito.verifyStatic(IDGenerator.class);
+		// PowerMockito.verifyStatic();
+	}
+}		
 
 Dependency
 		<dependency>
@@ -48,7 +65,6 @@ Dependency
 		</dependency>
 		
 				
-Example:
 
 
 

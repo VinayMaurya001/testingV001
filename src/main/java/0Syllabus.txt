@@ -28,9 +28,11 @@ Junit5
 	Assertion Exceptions with assertThrows
 	Lifecycle & test antipatterns to avoid
 	Using JUnit lifecycle hook annotations
+	Execution Control
 	Examing BeforeAll & AfterAll
 	Default default TestInstance behaviour
 	Using DisplayName & Disabled annotations
+	Exception Handling
 	Conditional execution & assumptions
 	Using AsertAll
 	Writing nested test classes
@@ -43,6 +45,8 @@ Mockito
 	Mocking
 	Steps in Mocking
 	Mockito
+	
+	
 Code Coverage
 	CodeCoverage
 	EclEmma(Jacoco) or Cobertura or JTest

@@ -17,7 +17,7 @@ Step to write software
 		Run the test
 
 Test Driven Development Methodology with JUnit
-	Write test first, then code
+	Write test first, then write code to success the test
 	
 	
 		
@@ -83,10 +83,10 @@ Example: CalculatorTest.java
 
 
 Why do we need a testing framework?
-	Because JUnit helps in the following step:
+	Because JUnit helps in the following step(Which are common for about each test):
 		Run the tests(jUnit)
 		Verify result(jUnit)
-		Do something to alert developer if test failed(jUnit).
+		Do something to alert developer if test failed(jUnit report or email or log).
 
 	
 	
@@ -95,7 +95,10 @@ Unit testing frameworks(like JUnit4) provides:
 	A way to assert the results
 	Run & report the results
 	
+"No News" is good news.
+"No faliure" is success.
 
+ 
 Why JUnit5 but not JUnit4
 JUnit4
 1. JUnit4 is > 10 years old.
@@ -103,6 +106,8 @@ JUnit4
 3. Not up to date with java language features. Like java8s
 4. Monolithic architecture(single jar )
 5. Bugs and feature requests piled up
+6. JUnit5 != JUnit4+1.(Crowd-funding campaign)
+
 
 JUnit5
 The D-facto standard for testing in Java

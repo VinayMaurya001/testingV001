@@ -35,7 +35,7 @@ Migrating from JUnit4 to Junit5
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.1</version>
-			</plugin>
+			</plugin>  
 		
 Maven
 	Build Automation Tool
@@ -76,11 +76,11 @@ JUnit5 Architecture
 2. Jupiter(JUnit 5 API)
 3. Vintage(JUnit 4 API)
 4. EXT(3rd party API)
-Most IDE support integration with JUnit. IDE & tools use platform to run the test.
+Most IDE support integration with JUnit. IDE & tools use platform(Jupiter-Engine) to run the test.
 
 JUnit Jupiter
 	New programming model in JUnit
-	Extension model
+	Extension model(extending Jupitor API)
 	What you'll be primarily working with
 
 
@@ -125,6 +125,7 @@ Example: Create simple test case & run it.
 	
 Convention
 Test class name ended with Test
+Method which we want to test , should be protected, so that we can use in test class and no where else.
 
 Create Test Case 
 	New>Junit Test Case with Eclipse
@@ -140,20 +141,25 @@ Run as>JUnit Test>Test>TestRunner>JUnit5
 	
 JUnit hack
 Can be used as a runner!
-	The Green Bar: "No News" is good news. "No Failures" means success.
+
+The Green Bar: "No News" is good news. "No Failures" means success.
+
 		Assertions.fail("Not Yet Implemented");
 		Assertions.assertEquals(4, 5);
 		Assertions.assertArrayEquals(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 });
 		Assertions.assertIterableEquals(expected, actual);
+		
 		Assertions.assertNotEquals(..)
 		Assertions.notNull(..)
+		Assertions.false(..)
+		
 
 Asserting exeptions with assertThrows:
 	To validate that method is throwing right eXception
 	1)If exception is not thrown
 	2)If wrong exception(exception of diff type) is thrown
 	Assertions.assertThrows(ArithmeticException.class, () -> divideTwoNumbers(1, 0),"Should throw divide by zero arithmetic exception");
-
+	Here 2nd argument is Executable type.??????????
 
 Test Life cycle and test anti-patterns to avoid
 Test Life cycle 
@@ -166,7 +172,7 @@ We can specify order using @Order annotation. Although ordering is not recommend
 
  
 Life-cycle hook 
-	@BeforeAll: Method, corresponding to this,  will execute before all test method. 
+	@BeforeAll: Method, corresponding to this,  will execute before all test method. This must be static
 	@AfterAll
 	@BeforeEach:Method, corresponding to this,  will execute even before create instance of its Test class. 
 		So method must be static.
@@ -199,7 +205,7 @@ Conditional executions
 @EnabledIfEnvironmentVariable
 
 Handling external factors
-assumptions.assumeTrue(boolean isServerUp): it will skip the test method.
+assumptions.assumeTrue(boolean isServerUp): it will skip the test method if isServerUp found true.
 
 
 
@@ -217,10 +223,11 @@ Writing nested test classes
 More test organization
 	Nest, related test with @Nested
 
+@DisplayName("When running CircleTest's")
 class CircleTest{
 
 @Nested
-@DisplayName("add method")
+@DisplayName("add method ")
 class AddTest{
 	@Test
 	@DisplayName("When adding positive numbers")
@@ -229,7 +236,7 @@ class AddTest{
 	}
 	@Test
 	@DisplayName("When adding negative numbers")
-	void testAddPositive(){
+	void testAddPositive2(){
 		assertEquals(-1, mathUtils.add(-1,-1), "should return the right sum");
 }}
 
@@ -245,18 +252,21 @@ Using supplier for assert messages
 Lazy assert messages
 	assertEquals(expected, actual, ()->"should return sum "+expected+" but returned "+actual);
 	Now, Lembda will execute only if assertion error occurs.
+	Advantage; Efficient 
 	
 	
 @RepeatedTest 
 	@RepeatedTest(3) 
 	void testMethod(RepetationInfo repetationInfo) {
 		repetationInfo.getCurrentRepetation();
+		repetationInfo.getTotalRepetation();
 	}
 
 	
 
 
 Tagging tests with @Tag
+
 	class AddTest{
 		@Test
 		@Tag("Positive")
@@ -277,9 +287,14 @@ Tagging tests with @Tag
 			assertEquals(0, mathUtils.add(-1,1), "should return the right sum");
 		}
 	}
-	We can run Tagging tests using:
+	We can run Tagging tests selectively using:
 		1. Eclipse
+				run>run configuration>  ...> include tag ...exclude tag
 		2. Configure in pom.xml
+			<configuration>
+				<include-tag>...</include-tag>
+			</configuration>
+			
 
 
 
@@ -288,16 +303,22 @@ Using TestInfo and TestReporter
 	But you should not worry about the underlying implementation. 
 	Make sure to use these interfaces directly(JUnit will inject implemented classes using dependency injection).
 	
-	TestReporter will give output on JUnit console output.
+	TestReporter will give output on JUnit console output not java console.
 	class CircleTest{
-		TestInfo testInfo;
-		TestReporter testReporter;
+		TestInfo testInfo;//for getting metadata about test
+		TestReporter testReporter;//to write on Output console, recommended way of logging test message
 		
+		@BeforeEach
+		void inithjj(TestInfo testInfo){
+		this,testInfo=testInfo;
+		this.testReporter=testReporter;
+		testReporter.publishEntry(map or string);
+		
+		}
 		void testMethod(TestInfo testInfo,TestReporter testReporter){
 			System.out.println("Running "+testInfo.getDisplayName()+" with tag "+testInfo.getTag());
 		}
 	}
-	
 	We  can write our own custom providers like TestInfo and TestReporter.
 	
 	

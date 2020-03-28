@@ -3,33 +3,34 @@ package _1Introduction;
 public class CalculatorTest {
 
 	public static void main(String[] args) {
-
-		testAdd();
-		testAdd2();
-		testAdd3();
+		CalculatorTest calculatorTest = new CalculatorTest();
+		calculatorTest.testAdd();
+		calculatorTest.testAdd2();
+		calculatorTest.testAdd3();
 	}
 
-	static void testAdd() {
+	void testAdd() {
 		Calculator calculator = new Calculator();
-		int expectedSum = 5;
 		int actualSum = calculator.add(2, 3);
+		int expectedSum = 5;
 		if (expectedSum != actualSum) {
 			System.out.println("testAdd failed");
+			throw new AssertionError("testAdd failed");
 		}
 	}
 
-	static void testAdd2() {
+	void testAdd2() {
 		Calculator calculator = new Calculator();
-		int expectedSum = 4;
 		int actualSum = calculator.add(2, 3);
-		assert expectedSum == actualSum ;
+		int expectedSum = 4;
+		assert expectedSum == actualSum;
 	}
-	static void testAdd3() {
+
+	void testAdd3() {
 		Calculator calculator = new Calculator();
-		int expectedSum = 4;
 		int actualSum = calculator.add(2, 3);
+		int expectedSum = 4;
 		assert expectedSum == actualSum : "testAdd2 failed";
 	}
 
-	
 }
