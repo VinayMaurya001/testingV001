@@ -1,60 +1,9 @@
 Introduction
-	Why do Testing?
-	What is Unit testing and Integration Testing in Java?
-	Why Unit testing?
-	Junit & Mockito
-	Setup Java & Eclipse
-	Example without using testing framework
-	Why do we need a testing framework?
-	Unit testing frameworks(like JUnit4) provides:
-	Why JUnit5 but not JUnit4
 Junit4
-	Introduction
-	Parameterized Test in Junit4
 Junit5
-	JUnit5 setup
-	Migrating from JUnit4 to Junit5
-	Maven Intro
-	JUnit 5 architecture
-	Learn how to setup a JUnit project
-		Using Maven
-	Creating a JUnit Test
-		Running a test
-		@Test Annotation
-		Using Assertions
-		Assert Methods
-		Test Driven Development with JUnit
-	Maven Surefire plugin integretion
-	Assertion Exceptions with assertThrows
-	Lifecycle & test antipatterns to avoid
-	Using JUnit lifecycle hook annotations
-	Execution Control
-	Examing BeforeAll & AfterAll
-	Default default TestInstance behaviour
-	Using DisplayName & Disabled annotations
-	Exception Handling
-	Conditional execution & assumptions
-	Using AsertAll
-	Writing nested test classes
-	Using supplier for assert messages
-	Using RepeatedTest
-	Tagging tests with @Tag
-	Using TestInfo and TestReporter
-	Parameterized Test in Junit5
 Mockito
-	Mocking
-	Steps in Mocking
-	Mockito
-	
-	
 Code Coverage
-	CodeCoverage
-	EclEmma(Jacoco) or Cobertura or JTest
 Basic Practices And Patterns
-	FIRST principle
-	Test Doubles: Dummy, Stubs, Mocks, Fake, Spies
-	Partial mocking using Mockito Spy
-	Spy vs Mock
 Power Mock
 	Limitations of Mockito
 	PowerMock

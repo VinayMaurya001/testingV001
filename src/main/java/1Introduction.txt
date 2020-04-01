@@ -1,4 +1,16 @@
 Introduction
+	Why do Testing?
+	What is Unit testing and Integration Testing in Java?
+	Why Unit testing?
+	Junit & Mockito
+	Setup Java & Eclipse
+	Example without using testing framework
+	Why do we need a testing framework?
+	Unit testing frameworks(like JUnit4) provides:
+	Why JUnit5 but not JUnit4
+
+
+Introduction
 
 Why we do testing?
 The point of writing automated tests not so much to verify that the code works now.

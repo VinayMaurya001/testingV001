@@ -1,3 +1,7 @@
+Power Mock
+	Limitations of Mockito
+	PowerMock
+	
 Limitations of Mockito
 	Mockito is one of the most used Mocking framework in Java space.
 	But it does come with certain limitations where it cann't mock out the edge cases like

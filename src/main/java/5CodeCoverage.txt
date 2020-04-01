@@ -1,3 +1,7 @@
+Code Coverage
+	CodeCoverage
+	EclEmma(Jacoco) or Cobertura or JTest
+	
 CodeCoverage:
 It is important metric for developers, for architect and even for management.
 Install EclEmma code coverage plugin for eclipse from elcipse marketplace

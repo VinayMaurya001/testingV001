@@ -1,4 +1,34 @@
-
+Junit5
+	JUnit5 setup
+	Migrating from JUnit4 to Junit5
+	Maven Intro
+	JUnit 5 architecture
+	Learn how to setup a JUnit project
+		Using Maven
+	Creating a JUnit Test
+		Running a test
+		@Test Annotation
+		Using Assertions
+		Assert Methods
+		Test Driven Development with JUnit
+	Maven Surefire plugin integretion
+	Assertion Exceptions with assertThrows
+	Lifecycle & test antipatterns to avoid
+	Using JUnit lifecycle hook annotations
+	Execution Control
+	Examing BeforeAll & AfterAll
+	Default default TestInstance behaviour
+	Using DisplayName & Disabled annotations
+	Exception Handling
+	Conditional execution & assumptions
+	Using AsertAll
+	Writing nested test classes
+	Using supplier for assert messages
+	Using RepeatedTest
+	Tagging tests with @Tag
+	Using TestInfo and TestReporter
+	Parameterized Test in Junit5
+	
 JUnit5 setup
 	Dependencies
  		junit-jupiter-engine

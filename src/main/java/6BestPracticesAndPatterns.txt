@@ -1,3 +1,9 @@
+Basic Practices And Patterns
+	FIRST principle
+	Test Doubles: Dummy, Stubs, Mocks, Fake, Spies
+	Partial mocking using Mockito Spy
+	Spy vs Mock
+	
 FIRST principle
 	It is very popular in Agile Software testing world.
 	F-Fast test
